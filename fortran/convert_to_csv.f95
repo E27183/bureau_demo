@@ -6,7 +6,7 @@ implicit none
     integer :: eof_error, value_target ! value_target is coded variable the next number read from file applies to, 1 = time, 2 = direction 3 = amplitude
     real :: time, amplitude, direction
 
-    inquire(file="../data/output.demo", exist=file_exists)
+    inquire(file="data/output.demo", exist=file_exists)
 
     read_eof = .TRUE.
     skip_first_instance = .TRUE.
@@ -16,14 +16,14 @@ implicit none
         call EXIT(1)
     end if
 
-    inquire(file="../data/output.csv", exist=file_exists)
+    inquire(file="data/output.csv", exist=file_exists)
     if (file_exists) then
-        open(3, file="../data/output.csv", status="old")
+        open(3, file="data/output.csv", status="old")
         close(3, status="delete")
     end if
 
-    open(1, file="../data/output.demo", status="old")
-    open(2, file="../data/output.csv", status="new")
+    open(1, file="data/output.demo", status="old")
+    open(2, file="data/output.csv", status="new")
     write(2, *) "time, direction, amplitude"
     do while (read_eof)
         read(1, '(a)', iostat = eof_error) io_buffer
