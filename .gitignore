@@ -2,3 +2,4 @@ data/*
 fortran/compiled
 c/compiled_c
 cpp/compiled_cpp
+.vscode/settings.json
