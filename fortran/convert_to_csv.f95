@@ -46,9 +46,9 @@ implicit none
                 if (value_target == 1) then
                     read(io_buffer, *) print_time
                 else if (value_target == 2) then
-                    read(io_buffer, *) print_amplitude
-                else if (value_target == 3) then
                     read(io_buffer, *) print_direction
+                else if (value_target == 3) then
+                    read(io_buffer, *) print_amplitude
                 else
                     print *, "Value found before target specifier"
                     call EXIT(1)
