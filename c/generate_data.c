@@ -13,7 +13,7 @@ int main(){
     const float y_amplitude = 2;
     const float angular_error = 0.001;
     const float amplitude_error = 0.001;
-    FILE *file_ptr = fopen("data/raw_output.demo", "w");
+    FILE *file_ptr = fopen("data/output.demo", "w");
     srand((unsigned int)time(NULL));
     float t = 0;
     for (short i = 0; i < 1000; i++) {
