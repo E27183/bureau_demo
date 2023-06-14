@@ -15,5 +15,5 @@ To run the solution program:
  - Run ```make all```
  - Follow the instructions on the terminal to get your predictions
 
- Note: This is designed to work on linux and doesn't support other operating systems
+ Note: This is designed to work on linux and doesn't support other operating systems  
  Also note: This was written for a job interview and while you are free to use it for your own projects, most of it will probably not be useful
