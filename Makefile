@@ -1,4 +1,7 @@
-.PHONY: gendata csvconversion todatapoints runmodel all
+.PHONY: gendata csvconversion todatapoints runmodel all makedatafolder
+
+makedatafolder:
+	test -d data || mkdir data
 
 gendata:
 	gcc c/generate_data.c -o c/compiled_c -lm
@@ -15,4 +18,4 @@ todatapoints:
 runmodel:
 	python3 python3/apply_model.py
 
-all: gendata csvconversion todatapoints runmodel
+all: makedatafolder gendata csvconversion todatapoints runmodel

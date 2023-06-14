@@ -1,10 +1,15 @@
 program convert_to_csv
 implicit none
 
+    ! Flags to handle edge cases. file_exists handles checking if the demo file exists and can be read, read_eof handles reaching the end of the demo file
+    ! and skip_first_instance prevents the program from trying to write a dummy datapoint to the csv on reaching the first time label
     logical :: file_exists, read_eof, skip_first_instance
+    ! print_<label> variables store the string to print out for the current raw datapoint, and print_row stores the final combined string to write to file
+    ! io_buffer stores inputs read from the demo file
     character(len = 64) :: io_buffer, print_time, print_amplitude, print_direction, print_row
-    integer :: eof_error, value_target ! value_target is coded variable the next number read from file applies to, 1 = time, 2 = direction 3 = amplitude
-    real :: time, amplitude, direction
+    ! value_target is an encoding to record what the most recent label read was to record values it reads correctly
+    ! Encoding is 1 = time, 2 = direction, 3 = amplitude
+    integer :: eof_error, value_target
 
     inquire(file="data/output.demo", exist=file_exists)
 
@@ -16,6 +21,7 @@ implicit none
         call EXIT(1)
     end if
 
+    ! By default fortran does not overwrite files, so must manually delete old file to create fresh csv
     inquire(file="data/output.csv", exist=file_exists)
     if (file_exists) then
         open(3, file="data/output.csv", status="old")
@@ -25,6 +31,7 @@ implicit none
     open(1, file="data/output.demo", status="old")
     open(2, file="data/output.csv", status="new")
     write(2, *) "time,direction,amplitude"
+    
     do while (read_eof)
         read(1, '(a)', iostat = eof_error) io_buffer
         if (eof_error == 0) then
