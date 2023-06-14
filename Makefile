@@ -1,4 +1,4 @@
-.PHONY: gendata csvconversion todatapoints
+.PHONY: gendata csvconversion todatapoints runmodel all
 
 gendata:
 	gcc c/generate_data.c -o c/compiled_c -lm
@@ -11,3 +11,8 @@ csvconversion:
 todatapoints:
 	gcc -o cpp/compiled_cpp cpp/refine_datapoints.cpp -lstdc++
 	cpp/compiled_cpp
+
+runmodel:
+	python3 python3/apply_model.py
+
+all: gendata csvconversion todatapoints runmodel
